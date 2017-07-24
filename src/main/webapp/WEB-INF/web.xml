@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>TakeUserParams</servlet-name>
+  	<display-name>TakeUserParams</display-name>
+  	<description></description>
+  	<servlet-class>com.straussj.NewMusicFinder.TakeUserParams</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TakeUserParams</servlet-name>
+  	<url-pattern>/TakeUserParams</url-pattern>
+  </servlet-mapping>
 </web-app>

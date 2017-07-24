@@ -11,25 +11,94 @@
 <body>
 	<jsp:include page="Header.jsp"/>
 	<div class="container">
-		<h2>Welcome to NewMusicFinder! Fill in the information below 
-		to find NEW music you might like!</h2>
+		<h2>Welcome to NewMusicFinder! Please specify your preferences for the options
+		below to find new music!</h2>
 	</div>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-3 col-xs-3">
-				<form method="post" action="TakeUserParams">
-					<label for="loud">Select Loudness</label>
-					<input id="loud" type="range" min="0" max="100" step="1" value="50"
-						oninput="outputUpdate(value)" style="float: left"/>
-					<output for="loud" id="loudValue">   50</output>
-				</form>
+		<form method="post" action="TakeUserParams">
+			<div class="row">
+				<div class="col-md-6 col-xs-6">
+					<label for="dance">Danceability (higher means more danceable)</label>
+					<input id="dance" name="dance" type="range" min="0" max="100" step="1" value="50"
+						oninput="outputUpdateDance(value)" style="float: left"/>
+					<output for="dance" id="danceVal">50</output>
+				</div>
 			</div>
-		</div>
-		<script type="text/javascript">
-			function outputUpdate(sel) {
-				document.querySelector('#loudValue').value = sel;
+			<script type="text/javascript">
+			function outputUpdateDance(sel) {
+				document.querySelector('#danceVal').value = sel;
 			}
-		</script>
+			</script>
+			
+			
+			<div class="row">
+				<div class="col-md-6 col-xs-6">
+					<label for="loud">Loudness</label>
+					<input id="loud" name="loud" type="range" min="0" max="100" step="1" value="50"
+						oninput="outputUpdateLoud(value)" style="float: left"/>
+					<output for="loud" id="loudVal">50</output>
+				</div>
+			</div>
+			<script type="text/javascript">
+			function outputUpdateLoud(sel) {
+				document.querySelector('#loudVal').value = sel;
+			}
+			</script>
+			
+			
+			<div class="row">
+				<div class="col-md-6 col-xs-6">
+					<label for="energy">Energy level (100 is highest energy)</label>
+					<input id="energy" name="energy" type="range" min="0" max="100" step="1" value="50"
+						oninput="outputUpdateEnergy(value)" style="float: left"/>
+					<output for="energy" id="energyVal">50</output>
+				</div>
+			</div>
+			<script type="text/javascript">
+			function outputUpdateEnergy(sel) {
+				document.querySelector('#energyVal').value = sel;
+			}
+			</script>
+			
+			<div class="row">
+				<div class="col-md-6 col-xs-6">
+					<label for="positivity">Positivity level (100 is very postive, 0 is depressing)</label>
+					<input id="positivity" name="positivity" type="range" min="0" max="100" step="1" value="50"
+						oninput="outputUpdatePositivity(value)" style="float: left"/>
+					<output for="positivity" id="positivityVal">50</output>
+				</div>
+			</div>
+			<script type="text/javascript">
+			function outputUpdatePositivity(sel) {
+				document.querySelector('#positivityVal').value = sel;
+			}
+			</script>
+			
+			<div class="row" style="margin-bottom:20px">
+				<div class="col-md-6 col-xs-6">
+					Live?<br/>
+					<label class="radio-inline"><input type="radio" name="live" value="Yes">
+					Yes</label>
+					<label class="radio-inline"><input type="radio" name="live" value="No">
+					No</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-6">
+					Acoustic?<br/>
+					<label class="radio-inline"><input type="radio" name="acoustic" value="Yes">
+					Yes</label>
+					<label class="radio-inline"><input type="radio" name="acoustic" value="No">
+					No</label>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-2">
+					<button class="btn btn-success" type="submit">Find music</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </body>
 </html>
