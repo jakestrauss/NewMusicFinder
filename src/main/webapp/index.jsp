@@ -62,15 +62,15 @@
 			
 			<div class="row">
 				<div class="col-md-6 col-xs-6">
-					<label for="positivity">Positivity level (100 is very postive, 0 is depressing)</label>
-					<input id="positivity" name="positivity" type="range" min="0" max="100" step="1" value="50"
-						oninput="outputUpdatePositivity(value)" style="float: left"/>
-					<output for="positivity" id="positivityVal">50</output>
+					<label for="instrumentalness">Instrumentalness level (100 is very instrumental, 0 is not)</label>
+					<input id="instrumentalness" name="instrumentalness" type="range" min="0" max="100" step="1" value="50"
+						oninput="outputUpdateInstrumentalness(value)" style="float: left"/>
+					<output for="instrumentalness" id="instrumentalnessVal">50</output>
 				</div>
 			</div>
 			<script type="text/javascript">
-			function outputUpdatePositivity(sel) {
-				document.querySelector('#positivityVal').value = sel;
+			function outputUpdateInstrumentalness(sel) {
+				document.querySelector('#instrumentalnessVal').value = sel;
 			}
 			</script>
 			
