@@ -14,11 +14,10 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
 import com.wrapper.spotify.methods.AlbumRequest;
-import com.wrapper.spotify.methods.AudioFeatureRequest;
+import com.wrapper.spotify.methods.AlbumsRequest;
 import com.wrapper.spotify.methods.NewReleasesRequest;
 import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
 import com.wrapper.spotify.models.Album;
-import com.wrapper.spotify.models.AudioFeature;
 import com.wrapper.spotify.models.ClientCredentials;
 import com.wrapper.spotify.models.NewReleases;
 import com.wrapper.spotify.models.Page;
@@ -97,79 +96,8 @@ public class TakeUserParams extends HttpServlet {
 		boolean live = request.getParameter("live").equals("Yes") ? true : false;
 		boolean acoustic = request.getParameter("acoustic").equals("Yes") ? true : false;
 		
-		//get new releases
-		final NewReleasesRequest releaseRequest = api.getNewReleases().limit(5).offset(0).country("US").build();
-		List<Album> albums = new ArrayList<Album>();
-		try {
-			NewReleases newReleases = releaseRequest.get();
-			Page<SimpleAlbum> simpleAlbumPage = newReleases.getAlbums();
-			List<SimpleAlbum> simpleAlbumList = simpleAlbumPage.getItems();
-			for(SimpleAlbum a : simpleAlbumList) {
-				AlbumRequest aRequest = api.getAlbum(a.getId()).build();
-				try {
-					Album album = aRequest.get();
-					albums.add(album);
-				} catch(Exception e) {
-					System.out.println("Error in getting full albums");
-				}
-			}
-		} catch(Exception e) {
-			System.out.println("error in getting new releases");
-		}
 		
-		//break albums into songs
-		List<SimpleTrack> simpleTracks = new ArrayList<SimpleTrack>();
-		for(Album a : albums) {
-			simpleTracks.addAll(a.getTracks().getItems());
-		}
 		
-		//analyze each song and find which is best according to user's specs
-		//this array will match up 1:1 with simpleTrack list
-		double[] similarityScores = new double[simpleTracks.size()];
-		int i = -1;
-		for(SimpleTrack sel : simpleTracks) {
-			i++;
-			final AudioFeatureRequest afRequest = api.getAudioFeature(sel.getId()).build();
-			try {
-				AudioFeature selAF = afRequest.get();
-				if(acoustic) {
-					if(selAF.getAcousticness() < .85) {
-						similarityScores[i] = 10000000; //do not consider this song because not acoustic
-						continue;
-					}
-				}
-				if(live) {
-					if(selAF.getLiveness() < .85) {
-						similarityScores[i] = 10000000;
-						continue;
-					}
-				}
-				double eucDist = Math.sqrt(Math.pow(selAF.getDanceability()-dance,2) + 
-											Math.pow(selAF.getEnergy()-energy, 2) +
-											Math.pow(selAF.getInstrumentalness()-instrumentalness, 2) + 
-											Math.pow(selAF.getLoudness()-loud, 2));
-				similarityScores[i] = eucDist;
-											
-			} catch(Exception e) {
-				System.out.println("error in getting audio feature object, error is " + e.getMessage());
-			}
-		}
-		
-		//get minimum of similarityScores
-		double min = 100000000;
-		int minInd = -1;
-		for(int j = 0; j < similarityScores.length; j++) {
-			if(similarityScores[j] < min) {
-				min = similarityScores[j];
-				minInd = j;
-			}
-		}
-		
-		//return best matched song
-		SimpleTrack bestTrack = simpleTracks.get(minInd);
-		request.getSession().setAttribute("bestTrack", bestTrack);
-		System.out.println(bestTrack.getName() + " " + bestTrack.getArtists().get(0).getName());
-		response.sendRedirect("ReturnRec.jsp");
 		
 	}
 
