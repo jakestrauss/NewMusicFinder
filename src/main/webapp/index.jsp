@@ -18,6 +18,78 @@
 		<form method="post" action="TakeUserParams">
 			<div class="row">
 				<div class="col-md-6 col-xs-6">
+					<h3>Pick up to 5 genres you like</h3>
+					<div class="row">
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="alternative" name="genres">Alternative
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="blues" name="genres">Blues
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="classical" name="genres">Classical
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="country" name="genres">Country
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="electronic" name="genres">Electronic
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="folk" name="genres">Folk
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="hard-rock" name="genres">Hard Rock
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="hip-hop" name="genres">Hip Hop
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="jazz" name="genres">Jazz
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="pop" name="genres">Pop
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="reggae" name="genres">Reggae
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input type="checkbox" value="rock" name="genres">Rock
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6 col-xs-6">
 					<label for="dance">Danceability (higher means more danceable)</label>
 					<input id="dance" name="dance" type="range" min="0" max="100" step="1" value="50"
 						oninput="outputUpdateDance(value)" style="float: left"/>
@@ -100,5 +172,14 @@
 			</div>
 		</form>
 	</div>
+	<script type="text/javascript">
+		
+		var limit = 5;
+		$("input[name='genres']").on('change', function (evt) {
+		      if($("input[name='genres']:checked").length > limit) {
+		       this.checked = false;
+		   		}
+		  });
+	</script>
 </body>
 </html>
