@@ -149,7 +149,7 @@
 			<div class="row" style="margin-bottom:20px">
 				<div class="col-md-6 col-xs-6">
 					Live?<br/>
-					<label class="radio-inline"><input type="radio" name="live" value="Yes">
+					<label class="radio-inline"><input type="radio" name="live" value="Yes" required>
 					Yes</label>
 					<label class="radio-inline"><input type="radio" name="live" value="No">
 					No</label>
@@ -158,9 +158,9 @@
 			<div class="row">
 				<div class="col-md-6 col-xs-6">
 					Acoustic?<br/>
-					<label class="radio-inline"><input type="radio" name="acoustic" value="Yes">
+					<label class="radio-inline"><input type="radio" name="acoustic" value="Yes" required>
 					Yes</label>
-					<label class="radio-inline"><input type="radio" name="acoustic" value="No">
+					<label class="radio-inline"><input type="radio" name="acoustic" value="No" >
 					No</label>
 				</div>
 			</div>
