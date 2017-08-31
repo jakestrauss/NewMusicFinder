@@ -10,7 +10,13 @@
 <body>
 	<jsp:include page="Header.jsp" />
 	
-	<h2 style="margin-left:25px;">Recommended Songs</h2>
+	<div class="container" style="margin-left:0px; padding-left:25px;">
+		<div class="row">
+			<div class="col-md-5"><h2>Recommended Songs</h2></div>
+			<a href="index.jsp" class="btn btn-primary" style="margin-top:20px;">Return to home</a>
+		</div>
+	</div>
+	
 	<div class="container" style="margin-left:0px; padding-left:25px;">
 		<div class="row">
 			<div class="col-md-2"></div>

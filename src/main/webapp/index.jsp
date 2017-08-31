@@ -17,7 +17,7 @@
 	<div class="container">
 		<form method="post" action="TakeUserParams">
 			<div class="row">
-				<div class="col-md-6 col-xs-6">
+				<div class="col-md-6 col-xs-6" style="margin-bottom:15px">
 					<h3>Pick up to 5 genres you like</h3>
 					<div class="row">
 						<div class = "col-sm-3">
@@ -132,7 +132,7 @@
 			}
 			</script>
 			
-			<div class="row" style="margin-bottom:20px">
+			<div class="row" style="margin-bottom:15px">
 				<div class="col-md-6 col-xs-6">
 					Instrumental (no lyrics)?<br/>
 					<label class="radio-inline"><input type="radio" name="instrumental" value="Yes" required>
@@ -142,7 +142,7 @@
 				</div>
 			</div>
 			
-			<div class="row" style="margin-bottom:20px">
+			<div class="row" style="margin-bottom:15px">
 				<div class="col-md-6 col-xs-6">
 					Live?<br/>
 					<label class="radio-inline"><input type="radio" name="live" value="Yes" required>
@@ -163,7 +163,7 @@
 			
 			<div class="row">
 				<div class="col-md-2">
-					<button class="btn btn-success" type="submit">Find music</button>
+					<button class="btn btn-success" type="submit" style="margin-top:10px">Find music</button>
 				</div>
 			</div>
 		</form>
