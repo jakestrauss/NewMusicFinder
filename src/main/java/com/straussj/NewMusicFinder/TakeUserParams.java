@@ -23,7 +23,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
-import com.wrapper.spotify.methods.TrackRequest;
+import com.wrapper.spotify.methods.TracksRequest;
 import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
 import com.wrapper.spotify.models.ClientCredentials;
 import com.wrapper.spotify.models.Track;
@@ -103,7 +103,7 @@ public class TakeUserParams extends HttpServlet {
 		// retrieve information from jsp page
 		double dance = Double.parseDouble(request.getParameter("dance"));
 		double energy = Double.parseDouble(request.getParameter("energy"));
-		double instrumentalness = Double.parseDouble(request.getParameter("instrumentalness"));
+		boolean instrumental = request.getParameter("instrumental").equals("Yes") ? true : false;
 		double loud = Double.parseDouble(request.getParameter("loud"));
 		boolean live = request.getParameter("live").equals("Yes") ? true : false;
 		boolean acoustic = request.getParameter("acoustic").equals("Yes") ? true : false;
@@ -127,15 +127,19 @@ public class TakeUserParams extends HttpServlet {
 		url += "&";
 		url += "target_danceability=" + dance / 100 + "&";
 		url += "target_energy=" + energy / 100 + "&";
-		url += "target_instrumentalness=" + instrumentalness / 100 + "&";
+		if (instrumental) {
+			url += "min_instrumentalness=.8&";
+		} else {
+			url += "max_instrumentalness=.45&";
+		}
 		// url += "target_loud=" + loud + "&";
 		if (acoustic) {
-			url += "min_acousticness=.8&";
+			url += "min_acousticness=.9&";
 		} else {
 			url += "max_acousticness=.45&";
 		}
 		if (live) {
-			url += "min_liveness=.8&";
+			url += "min_liveness=.9&";
 		} else {
 			url += "max_liveness=.45&";
 		}
@@ -161,16 +165,21 @@ public class TakeUserParams extends HttpServlet {
 		
 		//get Track objects from ids using api wrapper
 		List<Track> recTracks = new ArrayList<Track>();
-		for(String id : listIds) {
-			TrackRequest tRequest = api.getTrack(id).build();
-			try {
-				recTracks.add(tRequest.get());
-			} catch(Exception e) {
-				System.out.println("Was unable to get recommended tracks from ID");
-			}
+		TracksRequest tRequest = api.getTracks(listIds).build();
+		try {
+			recTracks = tRequest.get();
+		} catch(Exception e) {
+			System.out.println("Was unable to get recommended tracks from ID");
 		}
 		
-		request.getSession().setAttribute("recTracks", recTracks);
+		List<Track> recTracksWithPreview = new ArrayList<Track>();
+		for(Track t : recTracks) {
+			if(!(t.getPreviewUrl().equals("null"))) {
+				System.out.println(t.getPreviewUrl());
+				recTracksWithPreview.add(t);
+			}
+		}
+		request.getSession().setAttribute("recTracks", recTracksWithPreview);
 		response.sendRedirect("ReturnRec.jsp");
 
 	}

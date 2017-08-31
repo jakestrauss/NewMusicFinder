@@ -132,19 +132,15 @@
 			}
 			</script>
 			
-			<div class="row">
+			<div class="row" style="margin-bottom:20px">
 				<div class="col-md-6 col-xs-6">
-					<label for="instrumentalness">Instrumentalness level (100 is very instrumental, 0 is not)</label>
-					<input id="instrumentalness" name="instrumentalness" type="range" min="0" max="100" step="1" value="50"
-						oninput="outputUpdateInstrumentalness(value)" style="float: left"/>
-					<output for="instrumentalness" id="instrumentalnessVal">50</output>
+					Instrumental (no lyrics)?<br/>
+					<label class="radio-inline"><input type="radio" name="instrumental" value="Yes" required>
+					Yes</label>
+					<label class="radio-inline"><input type="radio" name="instrumental" value="No">
+					No</label>
 				</div>
 			</div>
-			<script type="text/javascript">
-			function outputUpdateInstrumentalness(sel) {
-				document.querySelector('#instrumentalnessVal').value = sel;
-			}
-			</script>
 			
 			<div class="row" style="margin-bottom:20px">
 				<div class="col-md-6 col-xs-6">
