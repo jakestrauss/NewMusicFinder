@@ -1,25 +1,33 @@
 package com.straussj.NewMusicFinder;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
-import com.wrapper.spotify.methods.ArtistSearchRequest;
+import com.wrapper.spotify.methods.TrackRequest;
 import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
-import com.wrapper.spotify.models.Artist;
 import com.wrapper.spotify.models.ClientCredentials;
-import com.wrapper.spotify.models.Page;
+import com.wrapper.spotify.models.Track;
+
 
 /**
  * Servlet implementation class TakeUserParams
@@ -133,14 +141,37 @@ public class TakeUserParams extends HttpServlet {
 		}
 		url += "market=US";
 
-		String rawRecommendation = "here is raw rec:\n";
+		String rawRecJSONString = "here is raw rec:\n";
 		try {
-			rawRecommendation = getHTML(url);
+			rawRecJSONString = getHTML(url);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+		
+		
+		FileUtils.writeStringToFile(new File("log.txt"), rawRecJSONString, Charset.defaultCharset());
+		JSONObject obj = new JSONObject(rawRecJSONString);
 
-		System.out.println(rawRecommendation);
+		List<String> listIds = new ArrayList<String>();
+		JSONArray array = obj.getJSONArray("tracks");
+		for(int i = 0 ; i < array.length() ; i++){
+		    listIds.add(array.getJSONObject(i).getString("id"));
+		}
+
+		
+		//get Track objects from ids using api wrapper
+		List<Track> recTracks = new ArrayList<Track>();
+		for(String id : listIds) {
+			TrackRequest tRequest = api.getTrack(id).build();
+			try {
+				recTracks.add(tRequest.get());
+			} catch(Exception e) {
+				System.out.println("Was unable to get recommended tracks from ID");
+			}
+		}
+		
+		request.getSession().setAttribute("recTracks", recTracks);
+		response.sendRedirect("ReturnRec.jsp");
 
 	}
 
