@@ -10,16 +10,21 @@
 <body>
 	<jsp:include page="Header.jsp" />
 	
-	<h2 style="margin-left:10px">Recommended Songs</h2>
-	<div class="container">
+	<h2 style="margin-left:25px;">Recommended Songs</h2>
+	<div class="container" style="margin-left:0px; padding-left:25px;">
 		<div class="row">
+			<div class="col-md-2"></div>
 			<div class="col-md-2"><h3>Song name</h3></div>
 			<div class="col-md-2"><h3>Artist name</h3></div>
 			<div class="col-md-3"><h3>Song preview</h3></div>
 		</div>
 
 		<c:forEach items="${recTracks}" var="track">
-			<div class="row">
+			<div class="row" style="padding-bottom: 25px">
+				<div class="col-md-2">
+					<c:set var="albumArtUrl" value="${track.album.images[0].url}"/>
+					<img src="${albumArtUrl}" width="130" height="130" alt="Album art not found"/>
+				</div>
 				<div class="col-md-2"><p class="lead">${track.name}</p></div>
 				<div class="col-md-2"><p class="lead">${track.artists[0].name}</p></div>
 				<div class="col-md-2">
