@@ -22,66 +22,78 @@
 					<div class="row">
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
-								<input type="checkbox" value="alternative" name="genres">Alternative
+								<input class="custom-required" type="checkbox" 
+								value="alternative" name="genres" required>Alternative
 							</label>
 						</div>
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
-								<input type="checkbox" value="blues" name="genres">Blues
+								<input class="custom-required" type="checkbox" 
+								value="blues" name="genres" required>Blues
 							</label>
 						</div>
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
-								<input type="checkbox" value="classical" name="genres">Classical
+								<input class="custom-required" type="checkbox" 
+								value="classical" name="genres" required>Classical
 							</label>
 						</div>
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
-								<input type="checkbox" value="country" name="genres">Country
-							</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class = "col-sm-3">
-							<label class="checkbox-inline">
-								<input type="checkbox" value="electronic" name="genres">Electronic
-							</label>
-						</div>
-						<div class = "col-sm-3">
-							<label class="checkbox-inline">
-								<input type="checkbox" value="folk" name="genres">Folk
-							</label>
-						</div>
-						<div class = "col-sm-3">
-							<label class="checkbox-inline">
-								<input type="checkbox" value="hard-rock" name="genres">Hard Rock
-							</label>
-						</div>
-						<div class = "col-sm-3">
-							<label class="checkbox-inline">
-								<input type="checkbox" value="hip-hop" name="genres">Hip Hop
+								<input class="custom-required" type="checkbox" 
+								value="country" name="genres" required>Country
 							</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
-								<input type="checkbox" value="jazz" name="genres">Jazz
+								<input class="custom-required" type="checkbox" 
+								value="electronic" name="genres" required>Electronic
 							</label>
 						</div>
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
-								<input type="checkbox" value="pop" name="genres">Pop
+								<input class="custom-required" type="checkbox" 
+								value="folk" name="genres" required>Folk
 							</label>
 						</div>
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
-								<input type="checkbox" value="reggae" name="genres">Reggae
+								<input class="custom-required" type="checkbox" 
+								value="hard-rock" name="genres" required>Hard Rock
 							</label>
 						</div>
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
-								<input type="checkbox" value="rock" name="genres">Rock
+								<input class="custom-required" type="checkbox" 
+								value="hip-hop" name="genres" required>Hip Hop
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input class="custom-required" type="checkbox" 
+								value="jazz" name="genres" required>Jazz
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input class="custom-required" type="checkbox" 
+								value="pop" name="genres" required>Pop
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input class="custom-required" type="checkbox" 
+								value="reggae" name="genres" required>Reggae
+							</label>
+						</div>
+						<div class = "col-sm-3">
+							<label class="checkbox-inline">
+								<input class="custom-required" type="checkbox" 
+								value="rock" name="genres" required>Rock
 							</label>
 						</div>
 					</div>
@@ -163,7 +175,7 @@
 			
 			<div class="row">
 				<div class="col-md-2">
-					<button class="btn btn-success" type="submit" style="margin-top:10px">Find music</button>
+					<button class="btn btn-success" id="checkBtn" type="submit" style="margin-top:10px">Find music</button>
 				</div>
 			</div>
 		</form>
@@ -176,6 +188,33 @@
 		       this.checked = false;
 		   		}
 		  });
+	</script>
+	<script type="text/javascript">
+		//makes sure at least one genre is checked
+		$('button[type="submit"]').on('click', function() {
+			$cbx_group = $("input:checkbox[name='genres']");
+		
+			$cbx_group.prop('required', true);
+			if($cbx_group.is(":checked")){
+			  $cbx_group.prop('required', false);
+			}
+		});
+		
+		//change html validation message
+		document.addEventListener("DOMContentLoaded", function() {
+		    var elements = document.getElementsByClassName("custom-required");
+		    for (var i = 0; i < elements.length; i++) {
+		        elements[i].oninvalid = function(e) {
+		            e.target.setCustomValidity("");
+		            if (!e.target.validity.valid) {
+		                e.target.setCustomValidity("Please select at least one genre");
+		            }
+		        };
+		        elements[i].oninput = function(e) {
+		            e.target.setCustomValidity("");
+		        };
+		    }
+		})
 	</script>
 </body>
 </html>

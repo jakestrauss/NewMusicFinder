@@ -134,18 +134,18 @@ public class TakeUserParams extends HttpServlet {
 		}
 		// url += "target_loud=" + loud + "&";
 		if (acoustic) {
-			url += "min_acousticness=.9&";
+			url += "min_acousticness=.8&";
 		} else {
 			url += "max_acousticness=.45&";
 		}
 		if (live) {
-			url += "min_liveness=.9&";
+			url += "min_liveness=.8&";
 		} else {
 			url += "max_liveness=.45&";
 		}
 		url += "market=US";
 
-		String rawRecJSONString = "here is raw rec:\n";
+		String rawRecJSONString = "";
 		try {
 			rawRecJSONString = getHTML(url);
 		} catch (IOException e) {
@@ -175,7 +175,6 @@ public class TakeUserParams extends HttpServlet {
 		List<Track> recTracksWithPreview = new ArrayList<Track>();
 		for(Track t : recTracks) {
 			if(!(t.getPreviewUrl().equals("null"))) {
-				System.out.println(t.getPreviewUrl());
 				recTracksWithPreview.add(t);
 			}
 		}
