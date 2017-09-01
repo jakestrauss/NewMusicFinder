@@ -105,6 +105,7 @@ public class TakeUserParams extends HttpServlet {
 		double energy = Double.parseDouble(request.getParameter("energy"));
 		boolean instrumental = request.getParameter("instrumental").equals("Yes") ? true : false;
 		double loud = Double.parseDouble(request.getParameter("loud"));
+		loud = loud/1.66666666 - 60;
 		boolean live = request.getParameter("live").equals("Yes") ? true : false;
 		boolean acoustic = request.getParameter("acoustic").equals("Yes") ? true : false;
 		String[] genres = request.getParameterValues("genres");
@@ -132,7 +133,7 @@ public class TakeUserParams extends HttpServlet {
 		} else {
 			url += "max_instrumentalness=.45&";
 		}
-		// url += "target_loud=" + loud + "&";
+		url += "target_loud=" + loud + "&";
 		if (acoustic) {
 			url += "min_acousticness=.8&";
 		} else {
@@ -145,6 +146,7 @@ public class TakeUserParams extends HttpServlet {
 		}
 		url += "market=US";
 
+		System.out.println(url);
 		String rawRecJSONString = "";
 		try {
 			rawRecJSONString = getHTML(url);
