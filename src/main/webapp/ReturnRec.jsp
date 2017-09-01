@@ -40,7 +40,7 @@
 				</div>
 				<div class="col-md-2">
 					<c:set var="spotifyURL" value="${track.externalUrls.get('spotify')}"/>
-					<a href="${spotifyURL}" target="_blank" class="btn btn-primary">Open in Spotify</a>
+					<a href="${spotifyURL}" target="_blank" class="btn btn-primary">Play full song in Spotify</a>
 				</div>
 				
 			</div>

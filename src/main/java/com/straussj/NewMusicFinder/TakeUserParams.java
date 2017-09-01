@@ -146,7 +146,6 @@ public class TakeUserParams extends HttpServlet {
 		}
 		url += "market=US";
 
-		System.out.println(url);
 		String rawRecJSONString = "";
 		try {
 			rawRecJSONString = getHTML(url);
