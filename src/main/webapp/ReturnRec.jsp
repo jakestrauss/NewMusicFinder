@@ -13,7 +13,15 @@
 	<div class="container" style="margin-left:0px; padding-left:25px;">
 		<div class="row">
 			<div class="col-md-5"><h2>Recommended Songs</h2></div>
-			<a href="index.jsp" class="btn btn-primary" style="margin-top:20px;">Return to home</a>
+			<div class="col-md-2">
+				<a href="index.jsp" class="btn btn-primary" style="margin-top:20px;">Return to home</a>
+			</div>
+			<div class="col-md-3">
+				<form method="post" action="AddPlaylist">
+					<button type="submit" class="btn btn-success" style="margin-top:20px;">
+					Open all songs in Spotify playlist</button>
+				</form>
+			</div>
 		</div>
 	</div>
 	

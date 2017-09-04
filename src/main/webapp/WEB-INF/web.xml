@@ -2,13 +2,33 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-  	<description></description>
-  	<display-name>TakeUserParams</display-name>
-  	<servlet-name>TakeUserParams</servlet-name>
-  	<servlet-class>com.straussj.NewMusicFinder.TakeUserParams</servlet-class>
+    <description></description>
+    <display-name>TakeUserParams</display-name>
+    <servlet-name>TakeUserParams</servlet-name>
+    <servlet-class>com.straussj.NewMusicFinder.TakeUserParams</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>TakeUserParams</servlet-name>
-  	<url-pattern>/TakeUserParams</url-pattern>
+    <servlet-name>TakeUserParams</servlet-name>
+    <url-pattern>/TakeUserParams</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddPlaylist</display-name>
+    <servlet-name>AddPlaylist</servlet-name>
+    <servlet-class>com.straussj.NewMusicFinder.AddPlaylist</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddPlaylist</servlet-name>
+    <url-pattern>/AddPlaylist</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddPlaylistProcessing</display-name>
+    <servlet-name>AddPlaylistProcessing</servlet-name>
+    <servlet-class>com.straussj.NewMusicFinder.AddPlaylistProcessing</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddPlaylistProcessing</servlet-name>
+    <url-pattern>/AddPlaylistProcessing</url-pattern>
   </servlet-mapping>
 </web-app>
