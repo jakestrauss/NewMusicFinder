@@ -16,18 +16,5 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <c:if test="${exported == true}">
-    		<% String playlistURL = (String)request.getSession().getAttribute("spotifyPlaylistURL"); %>
-    		<div onload="OpenInNewTab('<%=playlistURL%>')"></div>
-    		
-		<div class="container alert alert-warning left" style="margin-bottom: -5px; margin-top:5px;">Recommended songs successfully exported to your Spotify account!
-		Feel free to adjust your preferences and find more music if you wish!</div>
-	</c:if>
-	<script>
-		function OpenInNewTab(url) {
-		  var win = window.open(url, '_blank');
-		  win.focus();
-		}
-	</script>
 </body>
 </html>

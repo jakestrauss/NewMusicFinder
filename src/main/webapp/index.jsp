@@ -10,6 +10,21 @@
 </head>
 <body>
 	<jsp:include page="Header.jsp"/>
+	<c:if test="${not empty exported}">
+    		<% String playlistURL = (String)request.getSession().getAttribute("spotifyPlaylistURL"); %>
+    		<script>
+	    		function OpenInNewTab(url) {
+	    		  var win = window.open(url, '_blank');
+	    		  win.focus();
+	    		}
+    		
+    			OpenInNewTab('<%=playlistURL%>');
+    		</script>
+    		
+		<div class="container alert alert-warning left" style="margin-bottom: -5px; margin-top:5px;">Recommended songs successfully exported to your Spotify account!
+		Feel free to adjust your preferences and find more music if you wish!</div>
+	</c:if>
+	
 	<div class="container">
 		<h2>Welcome to NewMusicFinder! Please specify your preferences for the options
 		below to find new music!</h2>

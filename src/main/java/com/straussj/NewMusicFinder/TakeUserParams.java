@@ -100,6 +100,9 @@ public class TakeUserParams extends HttpServlet {
 			}
 		});
 
+		request.getSession().removeAttribute("exported");
+		
+		
 		// retrieve information from jsp page
 		double dance = Double.parseDouble(request.getParameter("dance"));
 		double energy = Double.parseDouble(request.getParameter("energy"));

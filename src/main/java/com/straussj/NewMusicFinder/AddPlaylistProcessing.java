@@ -95,8 +95,6 @@ public class AddPlaylistProcessing extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
-		//getplay
-		
 		//add recommended songs to Spotify playlist
 		List<Track> recTracks = (List<Track>)request.getSession().getAttribute("recTracks");
 		
