@@ -9,7 +9,12 @@
 </head>
 <body>
 	<jsp:include page="Header.jsp" />
-	
+	<script>
+		function SpotifyPlaylist() {
+			alert('This will add a new playlist with all songs listed below to your Spotify account.' +
+					' You can always modify or delete it later if you want!');
+		}
+	</script>
 	<div class="container" style="margin-left:0px; padding-left:25px;">
 		<div class="row">
 			<div class="col-md-5"><h2>Recommended Songs</h2></div>
@@ -18,7 +23,7 @@
 			</div>
 			<div class="col-md-3">
 				<form method="post" action="AddPlaylist">
-					<button type="submit" class="btn btn-success" style="margin-top:20px;">
+					<button type="submit" class="btn btn-success" style="margin-top:20px;" onclick="SpotifyPlaylist()">
 					Open all songs in Spotify playlist</button>
 				</form>
 			</div>
@@ -49,8 +54,7 @@
 				<div class="col-md-2">
 					<c:set var="spotifyURL" value="${track.externalUrls.get('spotify')}"/>
 					<a href="${spotifyURL}" target="_blank" class="btn btn-primary">Play full song in Spotify</a>
-				</div>
-				
+				</div>	
 			</div>
 		</c:forEach>
 	</div>
