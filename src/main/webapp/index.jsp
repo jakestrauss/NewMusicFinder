@@ -26,14 +26,23 @@
 	</c:if>
 	
 	<div class="container">
-		<h2>Welcome to NewMusicFinder! Please specify your preferences for the options
-		below to find new music!</h2>
+		<div class="row">
+			<div class="col-xs-6">
+				<img src="Logomakr_0k23RD.png" alt="Album art not found"
+				style="padding-top:20px; padding-bottom: 10px;"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 col-md-6">
+				<h2>Specify your preferences below to find new music that you might like!</h2>
+			</div>
+		</div>
 	</div>
 	<div class="container">
 		<form method="post" action="TakeUserParams">
 			<div class="row">
 				<div class="col-md-6 col-xs-6" style="margin-bottom:15px">
-					<h3>Pick up to 5 genres you like</h3>
+					<h4>Pick up to 5 genres you like</h4>
 					<div class="row">
 						<div class = "col-sm-3">
 							<label class="checkbox-inline">
