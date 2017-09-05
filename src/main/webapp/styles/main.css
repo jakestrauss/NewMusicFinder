@@ -2,6 +2,7 @@
 html {
 	height:100%;
 }
+
 body {
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d9edf2+40,edf7ff+100 */
 	background: #d9edf2; /* Old browsers */
@@ -13,4 +14,10 @@ body {
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+img {
+    max-width: 90%;
+    height: auto;
+    width: auto\9; /* ie8 */
 }

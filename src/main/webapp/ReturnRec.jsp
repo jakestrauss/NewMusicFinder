@@ -43,26 +43,26 @@
 			
 			<c:otherwise>
 				<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-2"><h3>Song name</h3></div>
-					<div class="col-md-2"><h3>Artist name</h3></div>
-					<div class="col-md-3"><h3>Song preview</h3></div>
+					<div class="col-md-2 col-xs-2"></div>
+					<div class="col-md-2 col-xs-2"><h3>Song name</h3></div>
+					<div class="col-md-2 col-xs-2"><h3>Artist name</h3></div>
+					<div class="col-md-3 col-xs-2"><h3>Song preview</h3></div>
 				</div>
 				
 				<c:forEach items="${recTracks}" var="track">
 					<div class="row" style="padding-bottom: 25px">
-						<div class="col-md-2">
+						<div class="col-md-2 col-xs-2">
 							<c:set var="albumArtUrl" value="${track.album.images[0].url}"/>
-							<img src="${albumArtUrl}" width="130" height="130" alt="Album art not found"/>
+							<img src="${albumArtUrl}" alt="Album art not found"/>
 						</div>
-						<div class="col-md-2"><p class="lead">${track.name}</p></div>
-						<div class="col-md-2"><p class="lead">${track.artists[0].name}</p></div>
-						<div class="col-md-2">
+						<div class="col-md-2 col-xs-2"><p class="lead">${track.name}</p></div>
+						<div class="col-md-2 col-xs-2"><p class="lead">${track.artists[0].name}</p></div>
+						<div class="col-md-2 col-xs-2">
 							<c:set var="thisSongURL" value="${track.previewUrl}"/>
 							<audio src="${thisSongURL}" preload controls controlsList="nodownload" 
-							style="width: 145px;" ></audio>
+							style="width: 12vw;" ></audio>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-2 col-xs-2">
 							<c:set var="spotifyURL" value="${track.externalUrls.get('spotify')}"/>
 							<a href="${spotifyURL}" target="_blank" class="btn btn-primary">Play full song in Spotify</a>
 						</div>	
