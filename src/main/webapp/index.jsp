@@ -147,7 +147,7 @@
 			
 			<div class="row">
 				<div class="col-md-6 col-xs-6">
-					<label for="energy">Energy level (100 is highest energy)</label>
+					<label for="energy">Energy level</label>
 					<input id="energy" name="energy" type="range" min="0" max="100" step="1" value="50"
 						oninput="outputUpdateEnergy(value)" style="float: left"/>
 					<output for="energy" id="energyVal">50</output>
