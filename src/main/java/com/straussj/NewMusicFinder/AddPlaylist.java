@@ -39,7 +39,7 @@ public class AddPlaylist extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean heroku = true;
 		String redirectURI = heroku ? 
-				"https://NewMusicFinder.herokuapp.com/AddPlaylistReturn.jsp" : 
+				"https://new-music-finder.herokuapp.com/AddPlaylistReturn.jsp" : 
 				"http://localhost:8080/NewMusicFinder/AddPlaylistReturn.jsp";
 		Api api = Api.builder()
 				  .clientId("205f9b7102884e5f8fb117c513ded8de")
