@@ -132,18 +132,18 @@ public class TakeUserParams extends HttpServlet {
 		url += "target_danceability=" + dance / 100 + "&";
 		url += "target_energy=" + energy / 100 + "&";
 		if (instrumental) {
-			url += "min_instrumentalness=.8&";
+			url += "min_instrumentalness=.7&";
 		} else {
 			url += "max_instrumentalness=.45&";
 		}
 		url += "target_loud=" + loud + "&";
 		if (acoustic) {
-			url += "min_acousticness=.8&";
+			url += "min_acousticness=.7&";
 		} else {
 			url += "max_acousticness=.45&";
 		}
 		if (live) {
-			url += "min_liveness=.8&";
+			url += "min_liveness=.7&";
 		} else {
 			url += "max_liveness=.45&";
 		}
@@ -156,8 +156,6 @@ public class TakeUserParams extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
-		
-		FileUtils.writeStringToFile(new File("log.txt"), rawRecJSONString, Charset.defaultCharset());
 		JSONObject obj = new JSONObject(rawRecJSONString);
 
 		List<String> listIds = new ArrayList<String>();
