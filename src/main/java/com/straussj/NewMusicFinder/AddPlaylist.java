@@ -37,11 +37,10 @@ public class AddPlaylist extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		boolean heroku = false;
-		String redirectURI = "http://localhost:8080/NewMusicFinder/AddPlaylistReturn.jsp";
-//		String redirectURI = heroku ? 
-//				"https://sandstorm-by-jake-strauss.herokuapp.com/callback.jsp" : 
-//				"http://localhost:8080/sandstorm/callback.jsp";
+		boolean heroku = true;
+		String redirectURI = heroku ? 
+				"https://NewMusicFinder.herokuapp.com/AddPlaylistReturn.jsp" : 
+				"http://localhost:8080/NewMusicFinder/AddPlaylistReturn.jsp";
 		Api api = Api.builder()
 				  .clientId("205f9b7102884e5f8fb117c513ded8de")
 				  .clientSecret("490347c94dd04cc8b151fa1b0d097b2b")
